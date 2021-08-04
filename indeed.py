@@ -34,7 +34,7 @@ def extract_indeed_jobs(last_page):
     jobs = []
     for page in range(last_page):
         # print(f"{URL}&start={page*LIMIT}")
-        result = requests.get(f"{URL}&start={0*LIMIT}")
+        result = requests.get(f"{URL}&start={page*LIMIT}")
         soup = BeautifulSoup(result.text, "html.parser")
         results = soup.find_all("div", {"class": "job_seen_beacon"})
         # print(results)
