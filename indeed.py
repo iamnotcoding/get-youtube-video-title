@@ -32,15 +32,15 @@ def extract_indeed_pages():
 
 def extract_indeed_jobs(last_page):
     jobs = []
-    # for page in range(last_page):
-    # print(f"{URL}&start={page*LIMIT}")
-    result = requests.get(f"{URL}&start={0*LIMIT}")
-    soup = BeautifulSoup(result.text, "html.parser")
-    results = soup.find_all("div", {"class": "job_seen_beacon"})
-    # print(results)
+    for page in range(last_page):
+        # print(f"{URL}&start={page*LIMIT}")
+        result = requests.get(f"{URL}&start={0*LIMIT}")
+        soup = BeautifulSoup(result.text, "html.parser")
+        results = soup.find_all("div", {"class": "job_seen_beacon"})
+        # print(results)
 
-    for result in results:
-        result = result.find("h2", {"class": "jobTitle"})
-        span = result.span
+        for result in results:
+            result = result.find("h2", {"class": "jobTitle"})
+            span = result.find("span", {"class": ""})
 
-        print(span.text)
+            print(span.string)
